@@ -7,3 +7,6 @@ QR Generator
 ## About
 
 It's a QR Generator, and we will add more types to generate QR like: Wi-Fi, etc
+
+## Website
+https://qr.mrtechnawy.com
