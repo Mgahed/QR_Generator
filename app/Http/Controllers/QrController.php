@@ -36,17 +36,17 @@ class QrController extends Controller
 
         $slug = \Str::slug($name) . '.png';
 
-        $qr = \QrCode::format('png');
-        $qr->size($qr_size);
-        $qr->errorCorrection($qr_correction);
-        $qr->style($qr_style)->eye($qr_eye);
-        $qr->merge('../public/logo.png', .3, true);
-        $qr->generate($body, '../public/qr_images/' . $slug);
+//        $qr = \QrCode::format('png');
+//        $qr = \QrCode::size($qr_size);
+//        $qr->errorCorrection($qr_correction);
+//        $qr->style($qr_style)->eye($qr_eye);
+//        $qr->merge('../public/logo.png', .3, true);
+//        $qr->generate($body, '../public/qr_images/' . $slug);
 
-        $QR = \QrCode::generate($body);
+//        $QR = \QrCode::generate($body);
         return back()->with([
             'status' => "QR Generated successfully",
-            'QR' => $QR,
+            'QR' => \QrCode::size($qr_size)->errorCorrection($qr_correction)->style($qr_style)->eye($qr_eye)->generate($body),
             'slug' => $slug
         ]);
     }

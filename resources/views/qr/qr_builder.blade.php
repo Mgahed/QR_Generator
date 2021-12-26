@@ -41,9 +41,9 @@
                                             <div class="form-group">
                                                 <label for="qr_size">QR Size</label>
                                                 <select class="form-control" id="qr_size" required name="qr_size">
+                                                    <option value="200">200x200</option>
+                                                    <option value="250">250x250</option>
                                                     <option value="300">300x300</option>
-                                                    <option value="600">600x600</option>
-                                                    <option value="900">900x900</option>
                                                 </select>
                                                 @error('qr_size')
                                                 <span class="text-danger">{{$message}}</span>
@@ -83,11 +83,11 @@
                             </div>
                             <div class="col-md-4">
                                 @if (session('slug'))
-                                    {{--{!! session('QR') !!}--}}
-                                    <a target="_blank" href="{{asset('qr_images/'.session('slug'))}}">
+                                    {!! session('QR') !!}
+                                    {{--<a target="_blank" href="{{asset('qr_images/'.session('slug'))}}">
                                         <img style="width:100%;" src="{{asset('qr_images/'.session('slug'))}}"
                                              alt="{{session('slug')}}">
-                                    </a>
+                                    </a>--}}
                                 @endif
                             </div>
                         </div>
