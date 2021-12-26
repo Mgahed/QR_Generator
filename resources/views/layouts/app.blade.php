@@ -1,6 +1,20 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>MrTechnawy QR Builder</title>
+    <meta content="" name="description">
+    <meta name="twitter:description" content="">
+    <meta content="Mr Technawy, business, website, desktop app, application, mobile, mobile app, mobile application"
+          name="keywords">
+    <meta property="og:url" content="https://qr.mrtechnawy.com/">
+    <meta property="og:image" content="/logo.jpeg">
+    <meta name="twitter:image" content="/logo.jpeg">
+    <meta name="twitter:images0" content="/logo.jpeg">
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
