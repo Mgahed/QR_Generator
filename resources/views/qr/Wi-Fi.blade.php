@@ -14,26 +14,33 @@
                         @endif
                         <div class="row">
                             <div class="col-md-8">
-                                <form method="post" action="{{route('qr.builder')}}">
+                                <form method="post" action="{{route('wifi.builder')}}">
                                     @csrf
-                                    <div class="form-group">
-                                        <label for="name">QR Name</label>
-                                        <input id="name" class="form-control" type="text" name="name"
-                                               placeholder="ex: MrTechnawy Link"
-                                               value="{{old('name')}}"/>
-                                        @error('name')
-                                        <span class="text-danger">{{$message}}</span>
-                                        @enderror
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label for="ssid">WiFi ssid</label>
+                                            <input id="ssid" class="form-control" type="text" name="ssid"
+                                                   placeholder="ssid"
+                                                   value="{{old('ssid')}}"/>
+                                            @error('ssid')
+                                            <span class="text-danger">{{$message}}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="password">WiFi password</label>
+                                            <input id="password" class="form-control" type="text" name="password"
+                                                   placeholder="password"
+                                                   value="{{old('password')}}"/>
+                                            @error('password')
+                                            <span class="text-danger">{{$message}}</span>
+                                            @enderror
+                                        </div>
                                     </div>
                                     <br>
-                                    <div class="form-group">
-                                        <label for="body">QR Content</label>
-                                        <input id="body" class="form-control" type="text" name="body"
-                                               placeholder="ex: https://mrtechnawy.com"
-                                               value="{{old('body')}}"/>
-                                        @error('body')
-                                        <span class="text-danger">{{$message}}</span>
-                                        @enderror
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" class="form-check-input" name="hidden"
+                                               id="exampleCheck1">
+                                        <label class="form-check-label" for="exampleCheck1">Hidden WiFi</label>
                                     </div>
                                     <hr>
                                     <div class="row">
@@ -41,9 +48,9 @@
                                             <div class="form-group">
                                                 <label for="qr_size">QR Size</label>
                                                 <select class="form-control" id="qr_size" required name="qr_size">
+                                                    <option value="200">200x200</option>
+                                                    <option value="250">250x250</option>
                                                     <option value="300">300x300</option>
-                                                    <option value="600">600x600</option>
-                                                    <option value="900">900x900</option>
                                                 </select>
                                                 @error('qr_size')
                                                 <span class="text-danger">{{$message}}</span>
@@ -82,12 +89,8 @@
                                 </form>
                             </div>
                             <div class="col-md-4">
-                                @if (session('slug'))
-                                    {{--{!! session('QR') !!}--}}
-                                    <a target="_blank" href="{{asset('qr_images/'.session('slug'))}}">
-                                        <img style="width:100%;" src="{{asset('qr_images/'.session('slug'))}}"
-                                             alt="{{session('slug')}}">
-                                    </a>
+                                @if (session('QR'))
+                                    {!! session('QR') !!}
                                 @endif
                             </div>
                         </div>

@@ -50,5 +50,45 @@ class QrController extends Controller
             'slug' => $slug
         ]);
     }
+
+    public function wifi_view()
+    {
+        return view('qr.Wi-Fi');
+    }
+
+    public function wifi_builder(Request $request)
+    {
+        $rules = [
+            'ssid' => 'required',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
+        $ssid = $request->ssid;
+        $password = $request->password;
+        $hidden = $request->hidden;
+        $qr_size = $request->qr_size;
+        $qr_style = $request->qr_style;
+        $qr_eye = $request->qr_shape;
+        $qr_correction = 'H';
+
+        $qr = \QrCode::size($qr_size);
+        $qr->errorCorrection($qr_correction);
+        $qr->style($qr_style)->eye($qr_eye);
+        $qr->merge('../public/logo.png', .3, true);
+        $body = $qr->wiFi([
+            'encryption' => 'WPA/WEP',
+            'ssid' => $ssid,
+            'password' => $password,
+            'hidden' => $hidden !== NULL ? 'true' : 'false'
+        ]);
+
+        return back()->with([
+            'status' => "QR Generated successfully",
+            'QR' => $body,
+        ]);
+    }
 }
 

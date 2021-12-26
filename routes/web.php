@@ -14,5 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [QrController::class, 'index']);
+Route::get('/', [QrController::class, 'index'])->name('home');
 Route::post('/qr-builder', [QrController::class, 'qr_builder'])->name('qr.builder');
+Route::get('/wifi', [QrController::class, 'wifi_view'])->name('wifi');
+Route::post('/wifi-builder', [QrController::class, 'wifi_builder'])->name('wifi.builder');
